@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/reset.css" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       defer
@@ -279,6 +280,7 @@
           timer: null,
           isAnimating: false,
           step: 0,
+          hovered: false,
           items: [
             { jp: 'yume no haru', ru: 'Небесный след', poster: 'anime-card__poster--neon' },
             { jp: 'hi no kokoro', ru: 'Сердце вулкана', poster: 'anime-card__poster--ember' },
@@ -345,22 +347,25 @@
         }"
         x-init="init()"
       >
-        <div class="container anime-section__container">
+        <div class="anime-section__container">
           <h2 class="anime-section__title">Аниме весеннего сезона</h2>
 
           <div
             class="anime-scroll"
             x-ref="grid"
             x-cloak
-            @mouseenter="stopAuto()"
-            @mouseleave="startAuto()"
+            @mouseenter="hovered = true; stopAuto()"
+            @mouseleave="hovered = false; startAuto()"
           >
             <button
               class="anime-scroll__nav anime-scroll__nav--prev"
               type="button"
               @click.prevent="prev()"
               :disabled="!canPrev()"
-              :class="{ 'anime-scroll__nav--disabled': !canPrev() }"
+              :class="{
+                'anime-scroll__nav--disabled': !canPrev(),
+                'anime-scroll__nav--visible': hovered && canPrev()
+              }"
               aria-label="Предыдущие карточки"
             ></button>
             <button
@@ -368,7 +373,10 @@
               type="button"
               @click.prevent="next()"
               :disabled="!canNext()"
-              :class="{ 'anime-scroll__nav--disabled': !canNext() }"
+              :class="{
+                'anime-scroll__nav--disabled': !canNext(),
+                'anime-scroll__nav--visible': hovered && canNext()
+              }"
               aria-label="Следующие карточки"
             ></button>
 
