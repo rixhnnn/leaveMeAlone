@@ -270,7 +270,7 @@
       </div>
     </header>
     <main class="bg-[color:var(--color-bg)]">
-                  <section
+      <section
         class="anime-section"
         x-data="{
           index: 0,
@@ -397,10 +397,238 @@
             </div>
           </div>
         </div>
+                  <section
+        class="schedule-section"
+        x-data="{
+          day: '',
+          init() {
+            const map = ['sun','mon','tue','wed','thu','fri','sat'];
+            this.day = map[new Date().getDay()] || 'mon';
+          }
+        }"
+        x-init="init()"
+      >
+        <div class="schedule-container">
+          <div class="schedule-left">
+            <h2 class="schedule-title">Расписание аниме</h2>
+            <p class="schedule-note">
+              Внимание! В графике указаны даты выхода эпизодов на телеэкранах Японии.
+              На сайте появится в течение дня либо на следующий день.
+            </p>
+
+            <div class="schedule-accordion">
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'mon' ? '' : 'mon'">
+                  <span>Понедельник</span>
+                  <span class="schedule-day__date">Сегодня</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'mon'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--a"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Небесный след</div>
+                      <div class="schedule-meta">Серия 7 (из 8)</div>
+                    </div>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--b"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Сердце вулкана</div>
+                      <div class="schedule-meta">Серия 3 (из 12)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'tue' ? '' : 'tue'">
+                  <span>Вторник</span>
+                  <span class="schedule-day__date">Завтра</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'tue'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--c"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Город на воде</div>
+                      <div class="schedule-meta">Серия 5 (из 11)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'wed' ? '' : 'wed'">
+                  <span>Среда</span>
+                  <span class="schedule-day__date">8 апреля</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'wed'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--d"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Тень ветра</div>
+                      <div class="schedule-meta">Серия 2 (из 10)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'thu' ? '' : 'thu'">
+                  <span>Четверг</span>
+                  <span class="schedule-day__date">9 апреля</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'thu'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--e"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Северный свет</div>
+                      <div class="schedule-meta">Серия 8 (из 12)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'fri' ? '' : 'fri'">
+                  <span>Пятница</span>
+                  <span class="schedule-day__date">10 апреля</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'fri'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--f"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">После дождя</div>
+                      <div class="schedule-meta">Серия 10 (из 13)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'sat' ? '' : 'sat'">
+                  <span>Суббота</span>
+                  <span class="schedule-day__date">11 апреля</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'sat'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--g"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Звук весны</div>
+                      <div class="schedule-meta">Серия 1 (из 8)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="schedule-day">
+                <button class="schedule-day__toggle" @click="day = day === 'sun' ? '' : 'sun'">
+                  <span>Воскресенье</span>
+                  <span class="schedule-day__date">12 апреля</span>
+                </button>
+                <div
+                  class="schedule-panel"
+                  x-show="day === 'sun'"
+                  x-transition:enter="schedule-enter"
+                  x-transition:enter-start="schedule-enter-start"
+                  x-transition:enter-end="schedule-enter-end"
+                  x-transition:leave="schedule-leave"
+                  x-transition:leave-start="schedule-leave-start"
+                  x-transition:leave-end="schedule-leave-end"
+                >
+                  <div class="schedule-item">
+                    <div class="schedule-poster schedule-poster--h"></div>
+                    <div class="schedule-info">
+                      <div class="schedule-name">Горизонт тишины</div>
+                      <div class="schedule-meta">Серия 6 (из 9)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-right">
+            <div class="schedule-card">
+              <span class="schedule-card__eyebrow">Сезон</span>
+              <h3 class="schedule-card__title">Весна 2026</h3>
+              <p class="schedule-card__text">
+                Следите за свежими релизами и добавляйте тайтлы в избранное, чтобы не пропустить премьеру.
+              </p>
+              <div class="schedule-card__stats">
+                <div>
+                  <div class="schedule-card__value">38</div>
+                  <div class="schedule-card__label">Тайтлов</div>
+                </div>
+                <div>
+                  <div class="schedule-card__value">12</div>
+                  <div class="schedule-card__label">Сегодня</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </body>
 </html>
+
+
+
+
 
 
 
