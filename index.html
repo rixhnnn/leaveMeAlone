@@ -417,7 +417,7 @@
             </p>
 
             <div class="schedule-accordion">
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'mon' }">
                 <button class="schedule-day__toggle" @click="day = day === 'mon' ? '' : 'mon'">
                   <span>Понедельник</span>
                   <span class="schedule-day__date">Сегодня</span>
@@ -449,7 +449,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'tue' }">
                 <button class="schedule-day__toggle" @click="day = day === 'tue' ? '' : 'tue'">
                   <span>Вторник</span>
                   <span class="schedule-day__date">Завтра</span>
@@ -474,7 +474,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'wed' }">
                 <button class="schedule-day__toggle" @click="day = day === 'wed' ? '' : 'wed'">
                   <span>Среда</span>
                   <span class="schedule-day__date">8 апреля</span>
@@ -499,7 +499,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'thu' }">
                 <button class="schedule-day__toggle" @click="day = day === 'thu' ? '' : 'thu'">
                   <span>Четверг</span>
                   <span class="schedule-day__date">9 апреля</span>
@@ -524,7 +524,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'fri' }">
                 <button class="schedule-day__toggle" @click="day = day === 'fri' ? '' : 'fri'">
                   <span>Пятница</span>
                   <span class="schedule-day__date">10 апреля</span>
@@ -549,7 +549,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'sat' }">
                 <button class="schedule-day__toggle" @click="day = day === 'sat' ? '' : 'sat'">
                   <span>Суббота</span>
                   <span class="schedule-day__date">11 апреля</span>
@@ -574,7 +574,7 @@
                 </div>
               </div>
 
-              <div class="schedule-day">
+              <div class="schedule-day" :class="{ 'is-open': day === 'sun' }">
                 <button class="schedule-day__toggle" @click="day = day === 'sun' ? '' : 'sun'">
                   <span>Воскресенье</span>
                   <span class="schedule-day__date">12 апреля</span>

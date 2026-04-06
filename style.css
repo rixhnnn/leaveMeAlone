@@ -348,7 +348,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .schedule-day__toggle:hover {
-  background: rgba(249, 115, 22, 0.08);
+  background: rgba(16, 16, 16, 0.06);
+}
+
+.schedule-day.is-open .schedule-day__toggle {
+  background: rgba(16, 16, 16, 0.18);
+  color: #111111;
+}
+
+.schedule-day.is-open .schedule-day__date {
+  color: rgba(16, 16, 16, 0.75);
 }
 
 .schedule-day__date {
