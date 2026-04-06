@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -268,5 +268,131 @@
         </div>
       </div>
     </header>
+    <main class="bg-[color:var(--color-bg)]">
+                  <section
+        class="anime-section"
+        x-data="{
+          index: 0,
+          perPage: 6,
+          maxIndex: 0,
+          autoMs: 7000,
+          timer: null,
+          isAnimating: false,
+          step: 0,
+          items: [
+            { jp: 'yume no haru', ru: 'Небесный след', poster: 'anime-card__poster--neon' },
+            { jp: 'hi no kokoro', ru: 'Сердце вулкана', poster: 'anime-card__poster--ember' },
+            { jp: 'mizu no machi', ru: 'Город на воде', poster: 'anime-card__poster--mist' },
+            { jp: 'kaze no kage', ru: 'Тень ветра', poster: 'anime-card__poster--dusk' },
+            { jp: 'kita no hikari', ru: 'Северный свет', poster: 'anime-card__poster--aurora' },
+            { jp: 'ame no ato', ru: 'После дождя', poster: 'anime-card__poster--mono' },
+            { jp: 'haru no oto', ru: 'Звук весны', poster: 'anime-card__poster--neon' }
+          ],
+          init() {
+            this.update();
+            window.addEventListener('resize', () => this.update());
+            this.startAuto();
+          },
+          update() {
+            const val = getComputedStyle(this.$refs.grid).getPropertyValue('--per-page');
+            this.perPage = parseInt(val) || 6;
+            this.$nextTick(() => this.measure());
+          },
+          measure() {
+            const card = this.$refs.track.querySelector('.anime-card');
+            if (!card) return;
+            const gap = parseFloat(getComputedStyle(this.$refs.track).gap) || 0;
+            this.step = card.getBoundingClientRect().width + gap;
+            this.maxIndex = Math.max(0, this.items.length - this.perPage);
+            if (this.index > this.maxIndex) this.index = this.maxIndex;
+          },
+          canPrev() {
+            return this.index > 0;
+          },
+          canNext() {
+            return this.index < this.maxIndex;
+          },
+          prev() {
+            if (this.isAnimating || !this.canPrev()) return;
+            this.index -= 1;
+            this.lock();
+          },
+          next() {
+            if (this.isAnimating || !this.canNext()) return;
+            this.index += 1;
+            this.lock();
+          },
+          lock() {
+            this.isAnimating = true;
+            setTimeout(() => { this.isAnimating = false; }, 900);
+          },
+          startAuto() {
+            this.stopAuto();
+            this.timer = setInterval(() => {
+              if (this.index < this.maxIndex) {
+                this.next();
+              } else {
+                this.stopAuto();
+              }
+            }, this.autoMs);
+          },
+          stopAuto() {
+            if (this.timer) {
+              clearInterval(this.timer);
+              this.timer = null;
+            }
+          }
+        }"
+        x-init="init()"
+      >
+        <div class="container anime-section__container">
+          <h2 class="anime-section__title">Аниме весеннего сезона</h2>
+
+          <div
+            class="anime-scroll"
+            x-ref="grid"
+            x-cloak
+            @mouseenter="stopAuto()"
+            @mouseleave="startAuto()"
+          >
+            <button
+              class="anime-scroll__nav anime-scroll__nav--prev"
+              type="button"
+              @click.prevent="prev()"
+              :disabled="!canPrev()"
+              :class="{ 'anime-scroll__nav--disabled': !canPrev() }"
+              aria-label="Предыдущие карточки"
+            ></button>
+            <button
+              class="anime-scroll__nav anime-scroll__nav--next"
+              type="button"
+              @click.prevent="next()"
+              :disabled="!canNext()"
+              :class="{ 'anime-scroll__nav--disabled': !canNext() }"
+              aria-label="Следующие карточки"
+            ></button>
+
+            <div
+              class="anime-track"
+              x-ref="track"
+              :style="`transform: translateX(-${index * step}px);`"
+            >
+              <template x-for="(item, i) in items" :key="i + '-' + item.jp">
+                <article class="anime-card">
+                  <div :class="['anime-card__poster', item.poster]"></div>
+                  <div class="anime-card__body">
+                    <p class="anime-card__jp" x-text="item.jp"></p>
+                    <h3 class="anime-card__ru" x-text="item.ru"></h3>
+                  </div>
+                </article>
+              </template>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
+
+
+

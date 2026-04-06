@@ -21,6 +21,7 @@ build/
 Thumbs.db
 
 # VS Code
+
 .vscode/
 
 # Python (если вдруг используешь)
