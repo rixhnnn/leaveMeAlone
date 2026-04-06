@@ -86,12 +86,12 @@ h1, h2, h3, h4, h5, h6 {
 [x-cloak] { display: none !important; }
 
 .anime-section {
-  padding: 2rem 0 5.5rem;
+  padding: 1.25rem 0 5.5rem;
 }
 
 .anime-section__title {
   font-size: clamp(1.5rem, 4vw, 2.0rem);
-  margin-bottom: 2.25rem;
+  margin-bottom: 0.25rem;
   text-align: left;
 }
 
@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .anime-scroll__nav {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 30px);
   width: 2.8125rem;
   height: 2.8125rem;
   border-radius: 999px;
@@ -252,11 +252,14 @@ h1, h2, h3, h4, h5, h6 {
   transition: var(--transition);
   opacity: 0;
   pointer-events: none;
+  padding: 0;
+  line-height: 1;
 }
 
 .anime-scroll__nav::before {
   font-size: 1.6rem;
   line-height: 1;
+  transform: translateY(-0.04rem);
 }
 
 .anime-scroll__nav:hover {
@@ -266,6 +269,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .anime-scroll__nav--prev {
   left: 0.25rem;
+  transform: translateY(-50%);
 }
 
 .anime-scroll__nav--prev::before {
@@ -274,6 +278,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .anime-scroll__nav--next {
   right: 0.25rem;
+  transform: translateY(-50%);
 }
 
 .anime-scroll__nav--next::before {
