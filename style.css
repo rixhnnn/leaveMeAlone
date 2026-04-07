@@ -996,6 +996,52 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-muted);
 }
 
+.seo-section {
+  padding: 3.5rem 0 5.5rem;
+}
+
+.seo-container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.seo-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f3f6 100%);
+  padding: 1.75rem;
+}
+
+.seo-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+.seo-text {
+  color: var(--color-text-secondary);
+  max-width: 60rem;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.seo-subtitle {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.seo-text p + p {
+  margin-top: 1rem;
+}
+
+.seo-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
 
 @media (min-width: 931px) {
   .header__burger { display: none !important; }
