@@ -401,9 +401,49 @@
         class="schedule-section"
         x-data="{
           day: '',
+          now: Date.now(),
+          timerId: null,
           init() {
-            const map = ['sun','mon','tue','wed','thu','fri','sat'];
-            this.day = map[new Date().getDay()] || 'mon';
+            this.day = this.getCurrentDayKey();
+            this.timerId = window.setInterval(() => {
+              this.now = Date.now();
+            }, 60000);
+          },
+          getCurrentDayKey() {
+            const weekday = new Intl.DateTimeFormat('en-US', {
+              weekday: 'short',
+              timeZone: 'Europe/Moscow'
+            }).format(new Date(this.now)).toLowerCase();
+
+            const map = {
+              mon: 'mon',
+              tue: 'tue',
+              wed: 'wed',
+              thu: 'thu',
+              fri: 'fri',
+              sat: 'sat',
+              sun: 'sun'
+            };
+
+            return map[weekday.slice(0, 3)] || 'mon';
+          },
+          getDayOffset(dayKey) {
+            const order = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const currentIndex = order.indexOf(this.getCurrentDayKey());
+            const targetIndex = order.indexOf(dayKey);
+            return (targetIndex - currentIndex + 7) % 7;
+          },
+          getDayDateLabel(dayKey) {
+            const offset = this.getDayOffset(dayKey);
+
+            if (offset === 0) return 'Сегодня';
+            if (offset === 1) return 'Завтра';
+
+            return new Intl.DateTimeFormat('ru-RU', {
+              day: 'numeric',
+              month: 'long',
+              timeZone: 'Europe/Moscow'
+            }).format(new Date(this.now + offset * 86400000));
           }
         }"
         x-init="init()"
@@ -420,7 +460,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'mon' }">
                 <button class="schedule-day__toggle" @click="day = day === 'mon' ? '' : 'mon'">
                   <span>Понедельник</span>
-                  <span class="schedule-day__date">Сегодня</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('mon')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -436,14 +476,14 @@
                     <div class="schedule-poster schedule-poster--a"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Небесный след</div>
-                      <div class="schedule-meta">Серия 7 (из 8)</div>
+                      <div class="schedule-meta">Серия 7 — 17:00 (Москва)</div>
                     </div>
                   </div>
                   <div class="schedule-item">
                     <div class="schedule-poster schedule-poster--b"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Сердце вулкана</div>
-                      <div class="schedule-meta">Серия 3 (из 12)</div>
+                      <div class="schedule-meta">Серия 3 — 19:30 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -452,7 +492,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'tue' }">
                 <button class="schedule-day__toggle" @click="day = day === 'tue' ? '' : 'tue'">
                   <span>Вторник</span>
-                  <span class="schedule-day__date">Завтра</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('tue')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -468,7 +508,7 @@
                     <div class="schedule-poster schedule-poster--c"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Город на воде</div>
-                      <div class="schedule-meta">Серия 5 (из 11)</div>
+                      <div class="schedule-meta">Серия 5 — 18:15 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -477,7 +517,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'wed' }">
                 <button class="schedule-day__toggle" @click="day = day === 'wed' ? '' : 'wed'">
                   <span>Среда</span>
-                  <span class="schedule-day__date">8 апреля</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('wed')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -493,7 +533,7 @@
                     <div class="schedule-poster schedule-poster--d"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Тень ветра</div>
-                      <div class="schedule-meta">Серия 2 (из 10)</div>
+                      <div class="schedule-meta">Серия 2 — 21:00 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -502,7 +542,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'thu' }">
                 <button class="schedule-day__toggle" @click="day = day === 'thu' ? '' : 'thu'">
                   <span>Четверг</span>
-                  <span class="schedule-day__date">9 апреля</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('thu')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -518,7 +558,7 @@
                     <div class="schedule-poster schedule-poster--e"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Северный свет</div>
-                      <div class="schedule-meta">Серия 8 (из 12)</div>
+                      <div class="schedule-meta">Серия 8 — 20:10 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -527,7 +567,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'fri' }">
                 <button class="schedule-day__toggle" @click="day = day === 'fri' ? '' : 'fri'">
                   <span>Пятница</span>
-                  <span class="schedule-day__date">10 апреля</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('fri')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -543,7 +583,7 @@
                     <div class="schedule-poster schedule-poster--f"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">После дождя</div>
-                      <div class="schedule-meta">Серия 10 (из 13)</div>
+                      <div class="schedule-meta">Серия 10 — 22:00 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -552,7 +592,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'sat' }">
                 <button class="schedule-day__toggle" @click="day = day === 'sat' ? '' : 'sat'">
                   <span>Суббота</span>
-                  <span class="schedule-day__date">11 апреля</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('sat')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -568,7 +608,7 @@
                     <div class="schedule-poster schedule-poster--g"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Звук весны</div>
-                      <div class="schedule-meta">Серия 1 (из 8)</div>
+                      <div class="schedule-meta">Серия 1 — 16:40 (Москва)</div>
                     </div>
                   </div>
                 </div>
@@ -577,7 +617,7 @@
               <div class="schedule-day" :class="{ 'is-open': day === 'sun' }">
                 <button class="schedule-day__toggle" @click="day = day === 'sun' ? '' : 'sun'">
                   <span>Воскресенье</span>
-                  <span class="schedule-day__date">12 апреля</span>
+                  <span class="schedule-day__date" x-text="getDayDateLabel('sun')"></span>
                 </button>
                 <div
                   class="schedule-panel"
@@ -593,7 +633,7 @@
                     <div class="schedule-poster schedule-poster--h"></div>
                     <div class="schedule-info">
                       <div class="schedule-name">Горизонт тишины</div>
-                      <div class="schedule-meta">Серия 6 (из 9)</div>
+                      <div class="schedule-meta">Серия 6 — 18:50 (Москва)</div>
                     </div>
                   </div>
                 </div>
