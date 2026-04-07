@@ -1054,8 +1054,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: flex-start;
   gap: 2rem 3rem;
 }
 
@@ -1098,7 +1098,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer__block:last-child {
   justify-self: end;
-  padding-left: 2.5rem;
+  padding-left: 0;
 }
 
 .footer__block:last-child .footer__title::after {
@@ -1148,7 +1148,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer__copy {
   width: 100%;
-  margin: 1.8rem auto 0;
+  margin: 2rem auto 0;
   padding: 0 var(--spacing-lg);
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.6rem;
@@ -1188,6 +1188,18 @@ h1, h2, h3, h4, h5, h6 {
   .page-main {
     padding-bottom: 5.8rem;
   }
+  .footer {
+    padding-bottom: 4.5rem;
+  }
+  .footer__container {
+    grid-template-columns: 1fr;
+  }
+  .footer__block {
+    max-width: 100%;
+  }
+  .footer__block:last-child {
+    justify-self: start;
+  }
   .anime-scroll {
     --per-page: 3;
     overflow-x: auto;
@@ -1210,9 +1222,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.15rem;
     line-height: 1.45rem;
     height: 1.45rem;
-  }
-  .footer__container {
-    grid-template-columns: 1fr;
   }
   .schedule-container {
     grid-template-columns: 1fr;
@@ -1250,6 +1259,13 @@ h1, h2, h3, h4, h5, h6 {
   .container { padding: 0 var(--spacing-md); }
   .anime-section { padding: 3.5rem 0 2.5rem; }
   .anime-scroll { --per-page: 2; }
+  .footer__container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+  .footer__block {
+    min-width: 0;
+  }
   .anime-card {
     flex-basis: clamp(155px, 43vw, 220px);
   }
