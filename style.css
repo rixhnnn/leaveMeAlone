@@ -7,7 +7,7 @@ html {
 
 
 :root {
-  --font-display: 'Bebas Neue', cursive;
+  --font-display: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
   --font-body: 'Inter', sans-serif;
 
   --color-accent: #f97316;
