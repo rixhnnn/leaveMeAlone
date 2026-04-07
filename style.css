@@ -443,7 +443,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .anime-section {
-  padding: 1.25rem 0 5.5rem;
+  padding: 1.25rem 0 3.5rem;
 }
 
 .anime-section__title {
@@ -683,7 +683,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .schedule-section {
-  padding: 3.5rem 0 5.5rem;
+  padding: 1.5rem 0 1.5rem;
 }
 
 .schedule-container {
@@ -1214,7 +1214,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 480px) {
   .container { padding: 0 var(--spacing-md); }
-  .anime-section { padding: 3.5rem 0 4rem; }
+  .anime-section { padding: 3.5rem 0 2.5rem; }
   .anime-scroll { --per-page: 2; }
   .mobile-nav {
     padding-left: var(--spacing-md);
