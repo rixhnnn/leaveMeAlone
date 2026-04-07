@@ -518,6 +518,84 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-muted);
 }
 
+.fresh-section {
+  padding: 0 0 5.5rem;
+}
+
+.fresh-container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.fresh-head {
+  margin-bottom: 1.5rem;
+}
+
+.fresh-title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.fresh-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.fresh-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f3f6 100%);
+  overflow: hidden;
+}
+
+.fresh-card__poster {
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(160deg, #1d1d1d 0%, #111111 70%);
+}
+
+.fresh-card__poster--a { background: linear-gradient(160deg, #1e1c1a 0%, rgba(249, 115, 22, 0.35) 100%); }
+.fresh-card__poster--b { background: linear-gradient(160deg, #181923 0%, rgba(99, 102, 241, 0.35) 100%); }
+.fresh-card__poster--c { background: linear-gradient(160deg, #101c20 0%, rgba(14, 165, 233, 0.35) 100%); }
+.fresh-card__poster--d { background: linear-gradient(160deg, #211818 0%, rgba(244, 63, 94, 0.35) 100%); }
+.fresh-card__poster--e { background: linear-gradient(160deg, #171d17 0%, rgba(16, 185, 129, 0.35) 100%); }
+.fresh-card__poster--f { background: linear-gradient(160deg, #1d1811 0%, rgba(251, 146, 60, 0.35) 100%); }
+.fresh-card__poster--g { background: linear-gradient(160deg, #151b22 0%, rgba(59, 130, 246, 0.35) 100%); }
+.fresh-card__poster--h { background: linear-gradient(160deg, #1a171f 0%, rgba(168, 85, 247, 0.35) 100%); }
+.fresh-card__poster--i { background: linear-gradient(160deg, #191919 0%, rgba(156, 163, 175, 0.35) 100%); }
+.fresh-card__poster--j { background: linear-gradient(160deg, #1f1a17 0%, rgba(234, 179, 8, 0.35) 100%); }
+.fresh-card__poster--k { background: linear-gradient(160deg, #1f1418 0%, rgba(236, 72, 153, 0.35) 100%); }
+.fresh-card__poster--l { background: linear-gradient(160deg, #131518 0%, rgba(71, 85, 105, 0.35) 100%); }
+
+.fresh-card__body {
+  padding: 1rem;
+}
+
+.fresh-card__jp {
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--color-text);
+  margin-bottom: 0.45rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fresh-card__ru {
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0.45rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fresh-card__meta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
 
 @media (min-width: 931px) {
   .header__burger { display: none !important; }
@@ -535,6 +613,9 @@ h1, h2, h3, h4, h5, h6 {
   .updates-card {
     position: static;
   }
+  .fresh-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 
@@ -544,4 +625,6 @@ h1, h2, h3, h4, h5, h6 {
   .anime-section { padding: 3.5rem 0 4rem; }
   .anime-scroll { --per-page: 2; }
   .anime-card__body { padding: 1.2rem 1.1rem 1.1rem; }
+  .fresh-container { padding: 0 var(--spacing-md); }
+  .fresh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
