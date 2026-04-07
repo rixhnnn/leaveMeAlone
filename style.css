@@ -459,28 +459,28 @@ h1, h2, h3, h4, h5, h6 {
   top: 2rem;
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
+  padding: 0;
 }
 
 .updates-title {
   font-size: 1.6rem;
-  margin-bottom: 1.25rem;
-  margin-top: -1.75rem;
-  margin-left: -1.75rem;
-  margin-right: -1.75rem;
+  margin: 0;
   text-align: left;
   position: sticky;
   top: 0;
   z-index: 10;
   background: #ffffff;
-  padding: 1.75rem 1.75rem 0.75rem;
-  padding-bottom: 0.75rem;
+  min-height: 5.5rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.75rem 1.75rem 0.9rem;
   border-bottom: 1px solid var(--color-border);
 }
 
 .updates-list {
   display: grid;
   gap: 1rem;
-  padding-top: 0.25rem;
+  padding: 1rem 1.75rem 1.75rem;
 }
 
 .updates-item {
