@@ -443,7 +443,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .anime-section {
-  padding: 1.25rem 0 3.5rem;
+  padding: 1.25rem 0 2.5rem;
 }
 
 .anime-section__title {
@@ -468,13 +468,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: visible;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-}
-
-.anime-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(249, 115, 22, 0.45);
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.15);
+  transition: none;
 }
 
 .anime-card__poster {
@@ -482,19 +476,6 @@ h1, h2, h3, h4, h5, h6 {
   aspect-ratio: 3 / 3.4;
   background: linear-gradient(160deg, #222222 0%, #111111 60%, #0a0a0a 100%);
   overflow: visible;
-}
-
-.anime-card__poster::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.anime-card:hover .anime-card__poster::after {
-  opacity: 1;
 }
 
 .anime-card__poster--neon {
@@ -555,10 +536,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
-.anime-card__rating:hover {
-  filter: brightness(1.06);
-}
-
 .anime-card__tag {
   position: absolute;
   bottom: 0.85rem;
@@ -580,6 +557,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.4rem;
   align-items: center;
   text-align: center;
+  min-height: 4.1rem;
 }
 
 .anime-card__jp {
@@ -682,6 +660,15 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: auto;
 }
 
+.anime-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.anime-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .schedule-section {
   padding: 1.5rem 0 1.5rem;
 }
@@ -740,10 +727,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.2em;
   color: var(--color-text);
   background: transparent;
-}
-
-.schedule-day__toggle:hover {
-  background: rgba(16, 16, 16, 0.06);
 }
 
 .schedule-day.is-open .schedule-day__toggle {
@@ -933,6 +916,7 @@ h1, h2, h3, h4, h5, h6 {
 .fresh-card {
   border-radius: var(--radius-lg);
   overflow: visible;
+  transition: none;
 }
 
 .fresh-card__poster {
@@ -977,19 +961,17 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
-.fresh-card__rating:hover {
-  filter: brightness(1.06);
-}
-
 .fresh-card__body {
   padding: 1rem;
+  min-height: 5.4rem;
 }
 
 .fresh-card__jp {
   font-size: 0.84rem;
-  line-height: 1.35;
+  line-height: 1.15rem;
   color: var(--color-text);
   margin-bottom: 0.45rem;
+  height: 1.15rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -997,16 +979,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .fresh-card__ru {
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.35rem;
   margin-bottom: 0.45rem;
   color: var(--color-accent);
+  height: 1.35rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.2);
 }
 
 .fresh-card__meta {
   font-size: 0.8rem;
+  line-height: 1rem;
+  height: 1rem;
   color: var(--color-text-muted);
 }
 
@@ -1110,6 +1096,19 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.6rem;
 }
 
+.footer__block:last-child {
+  justify-self: end;
+  padding-left: 2.5rem;
+}
+
+.footer__block:last-child .footer__title::after {
+  width: 100%;
+}
+
+.footer__block:first-child .footer__title::after {
+  width: 50%;
+}
+
 .footer__link {
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1149,7 +1148,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer__copy {
   width: 100%;
-  max-width: var(--container);
   margin: 1.8rem auto 0;
   padding: 0 var(--spacing-lg);
   color: rgba(255, 255, 255, 0.6);
@@ -1190,7 +1188,24 @@ h1, h2, h3, h4, h5, h6 {
   .page-main {
     padding-bottom: 5.8rem;
   }
-  .anime-scroll { --per-page: 3; }
+  .anime-scroll {
+    --per-page: 3;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .anime-scroll__nav {
+    display: none;
+  }
+  .anime-track {
+    width: max-content;
+    transform: none !important;
+  }
+  .anime-card {
+    flex: 0 0 clamp(180px, 28vw, 250px);
+    scroll-snap-align: start;
+  }
   .anime-card__ru {
     font-size: 1.15rem;
     line-height: 1.45rem;
@@ -1212,10 +1227,32 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+@media (max-width: 640px) {
+  .anime-scroll { --per-page: 2; }
+  .anime-card {
+    flex-basis: clamp(165px, 44vw, 235px);
+  }
+  .anime-card__jp {
+    font-size: 0.72rem;
+    line-height: 1.05rem;
+    letter-spacing: 0.22em;
+    height: 1.05rem;
+  }
+  .anime-card__ru {
+    font-size: 1.05rem;
+    line-height: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+
 @media (max-width: 480px) {
   .container { padding: 0 var(--spacing-md); }
   .anime-section { padding: 3.5rem 0 2.5rem; }
   .anime-scroll { --per-page: 2; }
+  .anime-card {
+    flex-basis: clamp(155px, 43vw, 220px);
+  }
   .mobile-nav {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
