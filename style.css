@@ -917,7 +917,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .fresh-card {
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   overflow: visible;
   transition: none;
 }
@@ -927,6 +930,7 @@ h1, h2, h3, h4, h5, h6 {
   aspect-ratio: 3 / 4;
   background: linear-gradient(160deg, #1d1d1d 0%, #111111 70%);
   overflow: visible;
+  border-radius: 7px;
 }
 
 .fresh-card__poster--a { background: linear-gradient(160deg, #1e1c1a 0%, rgba(249, 115, 22, 0.35) 100%); }
@@ -965,7 +969,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .fresh-card__body {
-  padding: 1rem;
+  padding: 0.8rem 0 0;
   min-height: 5.4rem;
 }
 
