@@ -26,26 +26,9 @@
   <body>
     <header
       class="header"
-      x-data="{ menuOpen: false, searchOpen: false, authOpen: false }"
+      x-data="{ searchOpen: false, authOpen: false }"
     >
       <div class="header__inner">
-        <button
-          @click="menuOpen = !menuOpen"
-          class="header__burger"
-        >
-          <svg
-            class="header__burger-icon"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
-
         <a href="/" class="header__logo">
           <span class="header__logo-accent">A</span>
           <span class="header__logo-text"
@@ -137,76 +120,6 @@
           </div>
         </div>
       </div>
-
-      <div
-        x-show="menuOpen"
-        x-transition:enter="header-drawer-enter"
-        x-transition:enter-start="header-drawer-enter-start"
-        x-transition:enter-end="header-drawer-enter-end"
-        x-transition:leave="header-drawer-leave"
-        x-transition:leave-start="header-drawer-leave-start"
-        x-transition:leave-end="header-drawer-leave-end"
-        class="header__drawer"
-      >
-        <div class="header__drawer-top">
-          <a href="/" class="header__drawer-logo">
-            <span class="header__logo-accent">A</span>
-            <span class="header__logo-text"
-              >AniRise</span
-            >
-          </a>
-          <button
-            @click="menuOpen = false"
-            class="header__drawer-close"
-          >
-            <svg
-              class="header__drawer-close-icon"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-
-        <nav class="header__drawer-nav">
-          <a
-            href="#"
-            class="header__drawer-link"
-            >Главная</a
-          >
-          <a
-            href="#"
-            class="header__drawer-link"
-            >Аниме</a
-          >
-          <a
-            href="#"
-            class="header__drawer-link"
-            >Топ-100</a
-          >
-          <a
-            href="#"
-            class="header__drawer-link"
-            >Случайное</a
-          >
-          <a
-            href="#"
-            class="header__drawer-link"
-            >Сообщество</a
-          >
-        </nav>
-      </div>
-
-      <div
-        x-show="menuOpen"
-        @click="menuOpen = false"
-        class="header__overlay"
-      ></div>
-
       <div
         x-show="searchOpen"
         @keydown.escape.window="searchOpen = false"
@@ -257,6 +170,43 @@
         </div>
       </div>
     </header>
+    <nav class="mobile-nav" aria-label="Мобильная навигация" x-data="{ compact: false }" x-init="let lastY = window.scrollY; const onScroll = () => { const currentY = window.scrollY; compact = currentY > 40 && currentY > lastY; lastY = currentY; }; window.addEventListener('scroll', onScroll, { passive: true }); onScroll();" :class="{ 'mobile-nav--compact': compact }">
+      <a href="#" class="mobile-nav__link">
+        <svg class="mobile-nav__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 10.5 12 3l9 7.5" />
+          <path d="M5.5 9.5V21h13V9.5" />
+        </svg>
+        <span class="mobile-nav__label">Главная</span>
+      </a>
+      <a href="#" class="mobile-nav__link">
+        <svg class="mobile-nav__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="12" rx="2" />
+          <path d="M10 8.5v5l4-2.5-4-2.5Z" fill="currentColor" stroke="none" />
+          <path d="M8 21h8" />
+        </svg>
+        <span class="mobile-nav__label">Аниме</span>
+      </a>
+      <a href="#" class="mobile-nav__link">
+        <svg class="mobile-nav__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="7" height="7" rx="1.5" />
+          <rect x="13" y="4" width="7" height="7" rx="1.5" />
+          <rect x="4" y="13" width="7" height="7" rx="1.5" />
+          <rect x="13" y="13" width="7" height="7" rx="1.5" />
+        </svg>
+        <span class="mobile-nav__label">Случайное</span>
+      </a>
+      <a href="#" class="mobile-nav__link">
+        <svg class="mobile-nav__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="3" />
+          <circle cx="6" cy="10" r="2.5" />
+          <circle cx="18" cy="10" r="2.5" />
+          <path d="M4 20c0-2.8 2.2-5 5-5" />
+          <path d="M15 15c2.8 0 5 2.2 5 5" />
+          <path d="M8 20c0-3 1.8-5 4-5s4 2 4 5" />
+        </svg>
+        <span class="mobile-nav__label">Сообщество</span>
+      </a>
+    </nav>
     <main class="page-main">
       <h1 class="visually-hidden">Смотреть аниме онлайн бесплатно в хорошем качестве — AniRise</h1>
       <section
