@@ -1043,7 +1043,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer {
-  padding: 3.5rem 0 4rem;
+  padding: 3rem 0 1rem;
   background: #0b0b0b;
   color: #f1f1f1;
 }
@@ -1066,6 +1066,9 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   display: inline-block;
 }
+
+
+
 
 .footer__title::after {
   content: "";
@@ -1123,6 +1126,18 @@ h1, h2, h3, h4, h5, h6 {
   width: 28px;
   height: 28px;
   fill: currentColor;
+}
+
+.footer__copy {
+  width: 100%;
+  max-width: var(--container);
+  margin: 1rem auto 0;
+  padding: 0 var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 
