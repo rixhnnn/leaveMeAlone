@@ -271,13 +271,13 @@
           step: 0,
           hovered: false,
           items: [
-            { jp: 'yume no haru', ru: 'Небесный след', poster: 'anime-card__poster--neon' },
-            { jp: 'hi no kokoro', ru: 'Сердце вулкана', poster: 'anime-card__poster--ember' },
-            { jp: 'mizu no machi', ru: 'Город на воде', poster: 'anime-card__poster--mist' },
-            { jp: 'kaze no kage', ru: 'Тень ветра', poster: 'anime-card__poster--dusk' },
-            { jp: 'kita no hikari', ru: 'Северный свет', poster: 'anime-card__poster--aurora' },
-            { jp: 'ame no ato', ru: 'После дождя', poster: 'anime-card__poster--mono' },
-            { jp: 'haru no oto', ru: 'Звук весны', poster: 'anime-card__poster--neon' }
+            { jp: 'yume no haru', ru: 'Небесный след', poster: 'anime-card__poster--neon', href: '/anime/nebesnyy-sled' },
+            { jp: 'hi no kokoro', ru: 'Сердце вулкана', poster: 'anime-card__poster--ember', href: '/anime/serdtse-vulkana' },
+            { jp: 'mizu no machi', ru: 'Город на воде', poster: 'anime-card__poster--mist', href: '/anime/gorod-na-vode' },
+            { jp: 'kaze no kage', ru: 'Тень ветра', poster: 'anime-card__poster--dusk', href: '/anime/ten-vetra' },
+            { jp: 'kita no hikari', ru: 'Северный свет', poster: 'anime-card__poster--aurora', href: '/anime/severnyy-svet' },
+            { jp: 'ame no ato', ru: 'После дождя', poster: 'anime-card__poster--mono', href: '/anime/posle-dozhdya' },
+            { jp: 'haru no oto', ru: 'Звук весны', poster: 'anime-card__poster--neon', href: '/anime/zvuk-vesny' }
           ],
           init() {
             this.update();
@@ -376,7 +376,16 @@
             >
               <template x-for="(item, i) in items" :key="i + '-' + item.jp">
                 <article class="anime-card">
-                  <div :class="['anime-card__poster', item.poster]"></div>
+                  <div :class="['anime-card__poster', item.poster]">
+                    <template x-if="item.rating">
+                      <a
+                        class="anime-card__rating"
+                        :href="item.href || '#'"
+                        :aria-label="`Перейти на страницу аниме ${item.ru} с рейтингом ${item.rating}`"
+                        x-text="item.rating"
+                      ></a>
+                    </template>
+                  </div>
                   <div class="anime-card__body">
                     <p class="anime-card__jp" x-text="item.jp"></p>
                     <h3 class="anime-card__ru" x-text="item.ru"></h3>

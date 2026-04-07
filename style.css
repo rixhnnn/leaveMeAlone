@@ -513,7 +513,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, #ffffff 0%, #f4f4f6 100%);
   border: 1px solid rgba(16, 16, 16, 0.08);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
@@ -529,6 +529,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   aspect-ratio: 3 / 3.4;
   background: linear-gradient(160deg, #222222 0%, #111111 60%, #0a0a0a 100%);
+  overflow: visible;
 }
 
 .anime-card__poster::after {
@@ -579,6 +580,31 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.anime-card__rating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.1rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, black 0%, rgb(26, 211, 26) 70%);
+  color: #fffaf3;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(249, 115, 22, 0.34);
+  z-index: 2;
+}
+
+.anime-card__rating:hover {
+  filter: brightness(1.06);
 }
 
 .anime-card__tag {
