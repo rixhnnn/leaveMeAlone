@@ -462,6 +462,7 @@ h1, h2, h3, h4, h5, h6 {
 .anime-card {
   width: 100%;
   flex: 0 0 calc((100% - (var(--gap) * (var(--per-page) - 1))) / var(--per-page));
+  min-width: 187px;
   background: transparent;
   border: none;
   border-radius: 0;
@@ -474,7 +475,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .anime-card__poster {
   position: relative;
-  aspect-ratio: 3 / 3.4;
+  aspect-ratio: 187 / 212;
+  min-width: 187px;
+  min-height: 212px;
   background: linear-gradient(160deg, #222222 0%, #111111 60%, #0a0a0a 100%);
   overflow: visible;
   border-radius: 7px;
@@ -1221,6 +1224,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
   }
   .anime-card {
+    flex: 0 0 max(187px, clamp(170px, 25vw, 220px));
     scroll-snap-align: start;
   }
   .schedule-container {
@@ -1239,6 +1243,9 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
   .container { padding: 0 var(--spacing-md); }
   .anime-section { padding: 3.5rem 0 2.5rem; }
+  .anime-card {
+    flex-basis: max(187px, clamp(145px, 41vw, 190px));
+  }
   .footer__container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
