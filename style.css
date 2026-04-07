@@ -470,7 +470,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   transition: none;
-  border-radius: 10px;
 }
 
 .anime-card__poster {
@@ -1222,13 +1221,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
   }
   .anime-card {
-    flex: 0 0 clamp(180px, 28vw, 250px);
     scroll-snap-align: start;
-  }
-  .anime-card__ru {
-    font-size: 1.15rem;
-    line-height: 1.45rem;
-    height: 1.45rem;
   }
   .schedule-container {
     grid-template-columns: 1fr;
@@ -1243,38 +1236,15 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-@media (max-width: 640px) {
-  .anime-scroll { --per-page: 2; }
-  .anime-card {
-    flex-basis: clamp(165px, 44vw, 235px);
-  }
-  .anime-card__jp {
-    font-size: 0.72rem;
-    line-height: 1.05rem;
-    letter-spacing: 0.22em;
-    height: 1.05rem;
-  }
-  .anime-card__ru {
-    font-size: 1.05rem;
-    line-height: 1.35rem;
-    height: 1.35rem;
-  }
-}
-
-
 @media (max-width: 480px) {
   .container { padding: 0 var(--spacing-md); }
   .anime-section { padding: 3.5rem 0 2.5rem; }
-  .anime-scroll { --per-page: 2; }
   .footer__container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
   }
   .footer__block {
     min-width: 0;
-  }
-  .anime-card {
-    flex-basis: clamp(155px, 43vw, 220px);
   }
   .mobile-nav {
     padding-left: var(--spacing-md);
@@ -1287,18 +1257,6 @@ h1, h2, h3, h4, h5, h6 {
   .mobile-nav__label {
     font-size: 0.62rem;
   }
-  .anime-card__jp {
-    font-size: 0.68rem;
-    line-height: 1rem;
-    letter-spacing: 0.18em;
-    height: 1rem;
-  }
-  .anime-card__ru {
-    font-size: 1rem;
-    line-height: 1.3rem;
-    height: 1.3rem;
-  }
-  .anime-card__body { padding: 1.2rem 1.1rem 1.1rem; }
   .fresh-container { padding: 0 var(--spacing-md); }
   .fresh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
